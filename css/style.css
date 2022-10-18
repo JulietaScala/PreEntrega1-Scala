@@ -1,0 +1,560 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.grid-contenedor {
+    width: 100%; /*ancho*/
+    margin: 0 auto; /*el cero significa que no tiene margen de arriba y abajo, y el auto significa que al tener 80% de ancho me centra el contenido*/;
+    position: relative;
+    min-height: 100vh;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px auto 150px;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer"
+    ;
+}
+/*----grid layout-----*/
+.encabezado {
+    background-color: #ffffff;
+    grid-area: header;
+    width: auto;
+    display: grid;
+    grid-template-columns: 3fr 5fr 1.2fr;
+    grid-template-areas:
+    "logo menu acceso"
+    ;
+    position: fixed;
+    top: 0%;
+    z-index: 1;
+}
+nav input {
+    position: relative;
+    padding: 5px;
+}
+.principal {
+    background-color: rgb(255, 255, 255);
+    grid-area: main;
+}
+/*-----grid nav------*/
+.logo {
+    background-color: rgb(255, 255, 255);
+    grid-area: logo;
+    height: 80px;
+    margin: 10px 0 10px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo h1 {
+    color: black;
+    font-size: 30px;
+}
+nav {
+    background-color: #00314f;
+    grid-area: menu;
+    margin: 10px 8px 10px 0;
+    padding-right: 10px;
+    height: 80px;
+    clip-path: polygon(5% 0, 101% 0, 101% 100%, 0% 140%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.acceso {
+    background-color: rgb(0, 0, 0);
+    grid-area: acceso;
+    height: 80px;
+    margin: 10px 0 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.acceso a {
+    text-decoration: none;
+    font-size: 15px;
+    padding: 5px;
+    margin: 0 10px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+.acceso a:hover {
+    background-color: white;
+    color: black;   
+}
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding-left: 20px;
+}
+nav ul li {
+    width: 95px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav ul li a {
+    width: auto;
+    padding: 5px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    transition-property: background-color;
+    transition-duration: 1s;
+}
+nav ul li a:hover {
+    background-color: white;
+    color: black;   
+}
+.link-bigg {
+    padding: 0 15px;
+}
+
+
+
+/*------main------*/
+.panoramica-club {
+    background-image: url(../img/panoramica\ drone.JPG);
+    width: 100%;
+    height: calc(100vh - 92.27px);
+    background-position: bottom;
+}
+.galeria-grid {
+    width: calc(100% - 40px);
+    height: 850px;
+    background-color: rgb(255, 255, 255);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 400px;
+    gap: 25px;
+    padding: 20px;
+}
+.galeria-grid div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.foto-grid a {
+    text-decoration: none;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(255, 255, 255);
+    background-color: black;
+}
+.imagen-uno {
+    grid-column: span 8;
+}
+.imagen-dos {
+    grid-column: span 4;
+}
+.imagen-tres {
+    grid-column: span 6;
+}
+.imagen-cuatro {
+    grid-column: span 6;
+}
+.divisor {
+    background-color: #00314f;
+    width: 100%;
+    height: 80px;
+    margin: 50px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.divisor h3 {
+    color: white;
+}
+.novedades {
+    width: auto;
+    margin: 0 75px;
+}
+.noticia-uno {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #00314f4e;
+}
+.noticia-dos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    background-color: #00314f4e;
+}
+.texto-noticia {
+    margin: 0 60px;
+}
+/*.noticias {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+    "noticiauno noticiatextouno"
+    "noticiatextodos noticiados"
+    ;
+    margin: 0 75px 10px 75px;
+    justify-content: center;
+    align-items: center;
+    background-color: #00314f2f;
+}
+.noticia-uno {
+    grid-area: noticiauno;
+}
+.noticia-texto-uno {
+    grid-area: noticiatextouno;
+    margin: 0 40px 0 40px;
+}
+.noticia-texto-dos {
+    grid-area: noticiatextodos;
+    margin: 0 40px 0 40px;
+}
+.noticia-dos {
+    grid-area: noticiados;
+}*/
+.marcas {
+    background-color: #00314fdf;
+    width: 100%;
+    height: 32vh;
+    margin-top: 15px;
+}
+.marcas h2 {
+    font-size: 1.5rem;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: black;
+    text-align: center;
+    padding-top: 15px;
+}
+.logos-marcas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 100px 0 100px;
+}
+.logos-marcas a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logos-marcas a img {
+    transition-property: width;
+    transition-delay: 2s;
+}
+.logos-marcas a img:hover {
+    width: 95%;
+}
+/*-------footer--------*/
+.pie {
+    background-color: #00314f;
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+    "derechos redes"
+    "derechos logosredes"
+    ;
+    margin-top: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+.derechos {
+    grid-area: derechos;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(169, 169, 169);
+}
+.links-redes {
+    grid-area: redes;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5px;
+    color: rgb(169, 169, 169);
+}
+.logos-redes {
+    grid-area: logosredes;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 110px 10px 110px;
+}
+
+/*media queries*/
+
+@media screen and (max-width:950px){
+    .encabezado {
+        width: 100%;
+        grid-template-columns: 8fr 2fr;
+        grid-template-rows: 60px 40px;
+        grid-template-areas:
+        "logo logo"
+        "menu acceso"
+        ;
+    }
+    .logo h1 {
+        font-size: 30px;
+    }
+    nav {
+        height: 40px;
+        margin: 0;
+        clip-path: none;
+        -webkit-clip-path: none;
+    }
+    nav input {
+        width: 130px;
+    }
+    .acceso {
+        height: 40px;
+        margin: 0;
+    }
+    .logo {
+        height: 40px;
+        margin: 10px 0;
+    }
+    .logo a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .logo-img {
+        width: 50%;
+        height: 50%;
+    }
+    .marcas {
+        height: 20vh;
+    }
+    .marcas h2 {
+        font-size: 1.2rem;
+        padding-top: 10px;
+    }
+    .logos-marcas {
+        margin: 15px 50px 0px 50px;
+    }
+    .logos-marcas a {
+        width: auto;
+        /*display: flex;
+        justify-content: center;
+        align-items: center;*/
+    }
+    .logos-marcas a img{
+        width: 80%;
+        height: 80%;
+    }
+    .divisor {
+        height: 12vh;
+    }
+    .divisor h3 {
+        font-size: 1rem;
+    }
+    .novedades {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .noticia-uno {
+        flex-direction: column;
+        width: 500px;
+    }
+    .noticia-dos {
+        flex-direction: column;
+        width: 500px;
+    }
+    .titulo-noticia {
+        text-align: center;
+        margin: 10px;
+        font-size: 1rem;
+    }
+    .p-noticia {
+        text-align: justify;
+        margin: 10px 0;
+        font-size: 0.7rem;
+    }
+    .logos-redes {
+        padding: 0 40px 10px;
+    }
+    .logos-redes a{
+        margin: 0 5px 5;
+    }
+    .derechos h5 {
+        padding-left: 10px;
+    }
+}
+@media screen and (max-width:800px) {
+    .encabezado {
+        display: inline-block;
+    }
+    .logo h1 {
+        font-size: 25px;
+    }
+    nav {
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        clip-path: none;
+    }
+    nav ul li a {
+        margin-top: 5px;
+        font-size: 12px;
+    }
+    nav ul {
+        padding: 0;
+    }
+    nav input {
+        height: 2vh;
+        width: 110px;
+    }
+    nav ul li {
+        width: auto;
+        margin: 0 15px;
+    }
+    .acceso {
+        height: 40px;
+        margin: 0;
+    }
+    .acceso a {
+        font-size: 12px;
+    }
+    .logo {
+        height: 40px;
+        margin: 8px 0;
+    }
+    .logos-marcas a img{
+        width: 65%;
+        height: 65%;
+    }
+    .marcas h2 {
+        font-size: 1.1rem;
+        padding-top: 10px;
+    }
+}
+@media screen and (max-width:700px) {
+    .logo h1 {
+        font-size: 20px;
+    }
+    nav ul li {
+        width: auto;;
+        margin: 0 10px;
+    }
+    nav input {
+        width: 100px;
+    }
+    .link-bigg {
+        padding: 0;
+    }
+    .logos-marcas a img{
+        width: 60%;
+        height: 60%;
+    }
+    .marcas h2 {
+        font-size: 1rem;
+        padding-top: 10px;
+    }
+}
+@media screen and (max-width:550px) {
+    .logo h1 {
+        font-size: 18px;
+    }
+    nav ul li {
+        width: auto;;
+        margin: 0 5px;
+    }
+    nav input {
+        width: 90px;
+    }
+    .link-bigg {
+        padding: 0;
+    }
+    .logos-marcas a img{
+        width: 50%;
+        height: 50%;
+    }
+    .marcas h2 {
+        font-size: 0.9rem;
+        padding-top: 10px;
+    }
+}
+
+
+/*@media screen and (min-width:900px){
+    .grid-contenedor {
+        grid-template-columns: 0.5fr 1.5fr 0.5fr;
+        grid-template-rows: 150px 400px 150px;
+        grid-template-areas:
+        "nav header header"
+        "nav main aside"
+        "footer footer footer"
+        ;
+    }
+}*/
+
+
+
+/*--------html acceso registro----------*/
+.grid-contenedor-acceso{
+    width: 100%; /*ancho*/
+    margin: 0 auto; /*el cero significa que no tiene margen de arriba y abajo, y el auto significa que al tener 80% de ancho me centra el contenido*/
+    height: auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 100px 600px 150px;
+    grid-template-areas:
+    "header"
+    "main"
+    "footer"
+    ;
+}
+.iniciarsesion {
+    display: inline-block;
+    text-align: center;
+}
+.registrarse {
+    display: inline-block;
+    text-align: center;
+}
+
+.mainaccesoregistro {
+    display: block;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.iniciarsesion {
+    background-color: #959595;
+    color: white;
+    width: 60%;
+    height: 50vh;
+    border: solid 1px rgb(0, 0, 0);
+    margin: 50px 0;
+    display: inline-block;
+    justify-content: center;
+    box-shadow: 15px 10px 20px rgb(97, 97, 97);
+}
+.registrarse {
+    background-color: #00314fd4;
+    color: white;
+    width: 60%;
+    height: 60vh;
+    border: solid 1px rgb(0, 0, 0);
+    margin-bottom: 50px;
+    box-shadow: 15px 10px 20px rgb(97, 97, 97);
+}
+.form {
+    margin: 15px;
+}
+label {
+    margin: 10px;
+}
