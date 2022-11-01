@@ -1,0 +1,584 @@
+var Base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){var t="";var n,r,i,s,o,u,a;var f=0;e=Base64._utf8_encode(e);while(f<e.length){n=e.charCodeAt(f++);r=e.charCodeAt(f++);i=e.charCodeAt(f++);s=n>>2;o=(n&3)<<4|r>>4;u=(r&15)<<2|i>>6;a=i&63;if (isNaN(r)){u=a=64}else if (isNaN(i)){a=64}t=t+this._keyStr.charAt(s)+this._keyStr.charAt(o)+this._keyStr.charAt(u)+this._keyStr.charAt(a)}return t},decode:function(e){var t="";var n,r,i;var s,o,u,a;var f=0;e=e.replace(/[^A-Za-z0-9\+\/\=]/g,"");while(f<e.length){s=this._keyStr.indexOf(e.charAt(f++));o=this._keyStr.indexOf(e.charAt(f++));u=this._keyStr.indexOf(e.charAt(f++));a=this._keyStr.indexOf(e.charAt(f++));n=s<<2|o>>4;r=(o&15)<<4|u>>2;i=(u&3)<<6|a;t=t+String.fromCharCode(n);if (u!=64){t=t+String.fromCharCode(r)}if (a!=64){t=t+String.fromCharCode(i)}}t=Base64._utf8_decode(t);return t},_utf8_encode:function(e){e=e.replace(/\r\n/g,"\n");var t="";for(var n=0;n<e.length;n++){var r=e.charCodeAt(n);if (r<128){t+=String.fromCharCode(r)}else if (r>127&&r<2048){t+=String.fromCharCode(r>>6|192);t+=String.fromCharCode(r&63|128)}else{t+=String.fromCharCode(r>>12|224);t+=String.fromCharCode(r>>6&63|128);t+=String.fromCharCode(r&63|128)}}return t},_utf8_decode:function(e){var t="";var n=0;var r=c1=c2=0;while(n<e.length){r=e.charCodeAt(n);if (r<128){t+=String.fromCharCode(r);n++}else if (r>191&&r<224){c2=e.charCodeAt(n+1);t+=String.fromCharCode((r&31)<<6|c2&63);n+=2}else{c2=e.charCodeAt(n+1);c3=e.charCodeAt(n+2);t+=String.fromCharCode((r&15)<<12|(c2&63)<<6|c3&63);n+=3}}return t}};
+
+$(document).ready(function(){
+  // var cfurl = url_endpoint.BOXMANAGER_URL+'wp-content/plugins/box-manager/manager/api';
+  var cfurl = 'https://adm.bigg.fit/wp-content/plugins/box-manager/manager/api';
+  var member_id = app.user ? app.user.id : false;
+  var box_id = app.user ? app.user.box_id : false;
+  var member_goal = false;
+
+	// Members
+	if ($('body').hasClass('page-socios')){
+
+		// Login
+		$('#member-logout').click(function(e){
+			e.preventDefault();
+			showResponse('.book-alert', 'Cerrando Sesión', 'info');
+			Cookies.remove('biggfit');
+			setTimeout(function(){ window.location.reload(false); }, 1000);
+		});
+
+    // Logout
+		$('#member-login').on('submit', function(e){
+			e.preventDefault();
+			var user = $(this).find('[name="user"]').val();
+			var pwd = $(this).find('[name="pwd"]').val();
+			if (user !== '' && pwd !== ''){
+				showResponse('.book-alert', 'Verificando Credenciales', 'info');
+				$.post(cfurl, {route: 'login', user: user, password: pwd }, function(data){
+					var response = JSON.parse(data);
+					if (response.class === 'success'){
+						Cookies.set('biggfit', {
+							id: response.user.socio_id,
+							box: response.user.box,
+							box_id: response.user.box_id,
+							name: response.user.nombre,
+							lastname: response.user.apellido,
+              email: response.user.user_email,
+							status: response.user.activo
+						}, { expires: 30, sameSite: 'strict' });
+
+						setTimeout(function(){ window.location.reload(false); }, 1000);
+					}
+					showResponse('.book-alert', response.html, response.class);
+
+				});
+			}
+		});
+    $('#logtest').on('click', function(e){
+      e.preventDefault();
+
+      $.ajax({
+				url: 'http://54.224.165.246/oauth/token',
+				type: 'POST',
+				data: {
+					'grant_type': 'password',
+          'username': $('#member-login').find('[name="user"]').val(),
+					'password': $('#member-login').find('[name="pwd"]').val(),
+          'client_id': 'R2SrX0ZDn5ZXvqD7ziTjvT4Mo4WchgBs8UsTJmyl',
+          'client_secret': 't9NYJbbSTKFw9gsghgGqNqTuquInyQ7HZgWjRFzv'
+				}
+			})
+			.done(function(data) {
+				data.date = moment().toISOString();
+				data.tokenValidUntil = moment().add(data.expires_in, 's').toISOString();
+				data.refreshTokenValidUntil = moment().add(604800, 's').toISOString();
+        Cookies.set('bigg_token', data, { expires: 30, sameSite: 'strict' });
+
+				$.get('http://54.224.165.246/oauth/me/?access_token=' + data.access_token, function(response) {
+					console.log(response);
+				});
+			});
+    });
+
+		if ($('body').hasClass('biggfit-logged-in')){
+
+			// Booking
+      var boxes;
+      var pages = {
+        'loading': 0,
+        'rating': 1,
+        'box': 2,
+        'day': 3,
+        'time': 4,
+        'class': 5,
+        'profile': 6,
+        'summary': 7
+      };
+
+			$('.slider-book').slick({ arrows: false, infinite: false, swipe: false, speed: 600, touchMove: false });
+			$('.book-prev').click(function(e){e.preventDefault(); $('.slider-book').slick('slickPrev'); });
+			$('.book-next').click(function(e){e.preventDefault(); $('.slider-book').slick('slickNext'); });
+      $('.profile-save').data('member_id', member_id);
+
+      // Load Classes
+			$.post(cfurl, {route: 'clases', box_id: '2,3,4,5,7,11,30,31,36,37,38,39,43,44,45,46,47,48,52,53,67,68,69,70,71,73,74,75'}, function(data){
+        var is_box_selected = false;
+				var response = JSON.parse(data);
+				var box = false;
+				var day = false;
+				var time = false;
+				var item = false;
+        boxes = response.html;
+
+				$.each(boxes, function(bid, box){
+					//$('#book-box').append('<option value="'+box.id+'">'+box.nombre+'</option>');
+					$('#book-box').append('<option value="'+box.id+'" '+(box.id == box_id ? 'selected' : '')+'>'+box.nombre+'</option>');
+
+					if (box.id == box_id) is_box_selected = true;
+				});
+
+        if (is_box_selected){
+          $('.book-box .book-next').show();
+          $('.breadcrumb-box').html(boxes[box_id].nombre);
+          box = $('#book-box').val();
+        }
+
+				// Box
+				$('#book-box').on('change', function(){
+					if ($(this).val() !== ''){
+						box = $(this).val();
+						$('.book-box .book-next').show();
+            $('.breadcrumb-box').html(boxes[box].nombre);
+					}else{
+						box = false;
+						$('.book-box .book-next').hide();
+            $('.breadcrumb-box').html('BOX');
+					}
+				});
+
+				// Day
+				$('.book-day .book-next').on('click', function(){
+					$('.book-day .book-next.btn-default').removeClass('btn-default').addClass('btn-warning');
+					$(this).removeClass('btn-warning').addClass('btn-default');
+					day = $(this).data('day');
+
+					if (box && day){
+            var offset = boxes[box].gtm_offset;
+						$('#book-time').html('<option value=""></option>');
+						var now = moment().utcOffset(offset);
+            var p = 0;
+						$.each(boxes[box].clases[day], function(timestamp, items){
+              var hour = moment(day+' '+items[0].hora);
+							if (
+                moment(day).isAfter(now, 'day') ||
+                ((box == 7 || box == 71) && hour.diff(now, 'minutes', true) > -60) ||
+                hour.diff(now, 'minutes', true) > 0
+              ){
+  							$('#book-time').append('<option value="'+timestamp+'">'+items[0].hora+'</option>');
+  						}
+              p++;
+
+              // Order
+              if (p == Object.keys(boxes[box].clases[day]).length){
+                $('#book-time').html(
+                  $('#book-time option').sort(function(a, b){
+                    var moment_a = moment(day+' '+$(a).val()).unix();
+                    var moment_b = moment(day+' '+$(b).val()).unix();
+                    return moment_a == moment_b ? 0 : moment_a < moment_b ? -1 : 1;
+                  })
+                ).find('option').eq(0).prop('selected', true);
+              }
+
+						});
+
+					}
+				});
+
+				// Time
+				$('#book-time').on('change', function(){
+					if ($(this).val() !== ''){
+						time = $(this).val();
+            $('.book-time .book-next').show();
+
+						if (box && day && time){
+							$('#book-class').html('<option value=""></option>');
+							$.each(boxes[box].clases[day][time], function(i, clase){
+								$('#book-class').append('<option value="'+clase.clase_id+'" data-intervalo="'+clase.intervalo+'">'+clase.titulo+'</option>');
+							});
+						}
+						$('.slider-book').slick('slickNext');
+					}else{
+						time = false;
+						$('.book-time .book-next').hide();
+					}
+				});
+
+				$('#book-class').on('change', function(){
+					if ($(this).val() !== ''){
+						item = $(this).val();
+						$('.book-class .book-next').show();
+
+						if (box && day && time && item){
+							$('.book-summary .sum-class').html($('#book-class option[value="'+item+'"]').text());
+							$('.book-summary .sum-day').html($('.book-day .book-next[data-day="'+day+'"]').text());
+							$('.book-summary .sum-time').html($('#book-time option[value="'+time+'"]').text());
+							$('.book-summary .sum-box').html($('#book-box option[value="'+box+'"]').text());
+							$('.slider-book').slick('slickNext');
+						}
+					}else{
+						item = false;
+						$('.book-class .book-next').hide();
+					}
+				});
+
+				$('#send-booking').on('click', function(e){
+					e.preventDefault();
+					if (box && day && time && item){
+						showResponse('.book-alert', 'Guardando Reserva', 'info');
+						$.post(cfurl, {
+							route: 'reservas',
+							subroute: 'guardar',
+							socio_id: member_id,
+							box_id: box,
+							dia: day,
+							hora: $('#book-time option[value="'+time+'"]').text(),
+							clase_id: item,
+							intervalo: $('#book-class option[value="'+item+'"]').data('intervalo')
+						}, function(data){
+							var response = JSON.parse(data);
+							if (response.class === 'success'){
+								LoadBookings();
+								ResetBoookingForm();
+							}
+							showResponse('.book-alert', response.html, response.class);
+						});
+					}
+
+				});
+
+        LoadBookings();
+      });
+
+      // Bookings
+      function ResetBoookingForm(){
+				//$('#book-box option:first-child').prop('selected', true);
+        //$('.breadcrumb-box').html('BOX');
+				$('.book-day .book-next').removeClass('btn-default').addClass('btn-warning');
+				$('#book-time, #book-class').empty();
+				$('.slider-book').slick('slickGoTo', pages.box);
+			}
+
+			function LoadBookings(){
+				$('.member-bookings').empty();
+				$.post(cfurl, {route: 'socio', subroute: 'reservas', socio_id: member_id}, function(data){
+					var response = JSON.parse(data);
+					var div = $('<div class="list-group-item"><span class="h5 class"></span><br><span class="time"></span></div>')
+					if (response.html.length > 0){
+						$.each(response.html, function(i, booking){
+							var time = moment(booking.dia+' '+booking.hora);
+							var now = moment().utcOffset(boxes[booking.box_id].gtm_offset);
+							var item = div.clone();
+							item.find('.class').html(booking.clase+' @ '+booking.box);
+							item.find('.time').html(time.format('LLLL'));
+              if (booking.type == 'online'){
+                var time_to_class = time.diff(now, 'minutes', true);
+                if ( time_to_class > 15){
+                  item.append('<div class="small text-primary"><b>Clase Online: Link disponible 15 minutos antes del inicio de la clase</b></div>');
+                }else if (time_to_class > -15 && time_to_class < 15){
+                  var link = $('<div class="text-primary" style="cursor:pointer;"><b>Clase Online: Acceder</b></div>');
+                  link.on('click', function(){
+                    window.location.replace('zoommtg://zoom.us/join?confno='+booking.zoom_id+'&pwd='+booking.zoom_pwd);
+                  });
+                  item.append(link);
+                }
+              }
+
+
+              // Cancellation Policy
+							if (time.diff(now, 'hours', true) > 1 || moment(booking.dia).isAfter(now, 'day')){
+								var cancel = $('<span class="cancel-booking btn btn-danger btn-xs pull-right" data-id="'+booking.reserva_id+'">Cancelar</span>')
+								.click(function(){
+									if ($(this).data('id')){
+										showResponse('.book-alert', 'Cancelando Reserva', 'info');
+										$.post(cfurl, {route: 'reservas', subroute: 'borrar', reserva_id: $(this).data('id')}, function(data){
+											var response = JSON.parse(data);
+											if (response.class === 'success'){
+												LoadBookings();
+											}
+											showResponse('.book-alert', response.html, response.class);
+										});
+									}
+								});
+								item.find('.class').append(cancel);
+							}
+
+							$('.member-bookings').append(item);
+						});
+					}
+				});
+			}
+
+      // Rating
+      $('.star').on('click', function(){
+        $('.book-box .book-prev').show();
+        if ($('#book-box').val() !== ''){
+          $('.slider-book').slick('slickGoTo', pages.day);
+        }else{
+          $('.slider-book').slick('slickGoTo', pages.box);
+        }
+        $.post(cfurl, {route: 'save-rating', reservation_id: $(this).data('rid'), rank: $(this).data('rank')});
+      });
+
+      // NPS
+      $('.dot').on('click', function(){
+        $('.book-box .book-prev').show();
+        if ($('#book-box').val() !== ''){
+          $('.slider-book').slick('slickGoTo', pages.day);
+        }else{
+          $('.slider-book').slick('slickGoTo', pages.box);
+        }
+        $.post(cfurl, {route: 'save-nps', member_id: member_id, box_id: app.user.box_id, score: $(this).data('rank')});
+      });
+
+			// Data
+			$.post(cfurl, {route: 'socio', subroute: 'data', socio_id: member_id}, function(data){
+				var response = JSON.parse(data).html;
+        // Clearence
+				if ('apto_medico' in response){
+          var item = $('<div class="list-group-item small">');
+          var days = response.apto_medico;
+          if (days > 0){
+            item.html('Tu Ápto Médico vence en '+days+' días')
+            if (days > 30){
+              item.addClass('list-group-item-info');
+            }else{
+              item.addClass('list-group-item-warning');
+            }
+          }else{
+            item.html('No registramos que hayas entregado tu apto médico o el mismo se venció, necesitamos que lo presentes a la brevedad para poder seguir entrenando.').addClass('list-group-item-danger');
+          }
+          $('.member-alerts').append(item);
+				}
+
+        // Goals & Plans
+        var intensityLabels = {1: 'Baja', 2: 'Media Baja', 3: 'Media', 4: 'Media Alta', 5: 'Alta'};
+        member_goal = 'goal' in response ? response.goal : false;
+        $.getJSON(cfurl.BOXMANAGER_URL+'wp-json/programming/v1/api/plans', function(data){
+          var goals = {};
+          if (Object.keys(data).length > 0){
+
+            // Show daily training if goal exists
+            if (member_goal){
+              if (member_goal.plan_id in data){
+                var plan = data[member_goal.plan_id];
+                if (0 in plan.blocks && member_goal.goal_id != 144) delete plan.blocks[0];
+                $('.plan-active .plan-title').html(plan.title);
+                $('.plan-active .plan-intensity').html(intensityLabels[plan.intensity]);
+                if (member_goal.goal_id in plan.goals) $('.plan-active .plan-goal').html(plan.goals[member_goal.goal_id].title);
+
+                var b = 1;
+                $.each(plan.blocks, function(i, row){
+                  if (row){
+                    var li = $('<div class="list-group-item"><span class="h5">'+b+') '+row.title+'</span><br><div></div class="title"><small></small></div>');
+                    if (row.content.title) li.find('small').prepend('<b>'+row.content.title+'</b><br>');
+                    if (Object.keys(row.content.content).length > 0){
+                      $.each(row.content.content, function(i, movement){
+                        li.find('small').append(movement+'<br>');
+                      });
+                    }
+                    $('.plan-blocks').append(li);
+                    b++;
+                  }
+                });
+              }
+              $('.training-wrap').show();
+            }else{
+              $('#modal-training').modal('show');
+              $('.training-wrap').remove();
+            }
+
+            // Populate Selects
+            var p = 0;
+            $.each(data, function(planId, plan){
+              var itemPlan = $('<option>', {
+                value: plan.id,
+                text: plan.title,
+                'data-data': JSON.stringify(plan)
+              });
+              if (Object.keys(plan.goals).length > 0){
+                var goalsClasses = Object.keys(plan.goals).map(function(i){ return 'goal-map-'+i }).join(' ');
+                itemPlan.addClass(goalsClasses);
+                $.each(plan.goals, function(goalId, goal){
+                  if (!(goal.id in goals)){
+                    goals[goal.id] = goal;
+                    var itemGoal = $('<option>', {
+                      value: goal.id,
+                      text: goal.title,
+                      'data-order': goal.order,
+                      'data-data': JSON.stringify(goal)
+                    });
+                    $('.training-goal').append(itemGoal);
+                  }
+                });
+              }
+              $('.training-plan-hidden').append(itemPlan);
+              p++;
+
+              // Order Goals
+              if (p === Object.keys(data).length){
+                $('.training-goal').html(
+                  $('.training-goal option').sort(function(a, b){
+                    return $(a).data('order') == $(b).data('order') ? 0 : $(a).data('order') < $(b).data('order') ? -1 : 1;
+                  })
+                ).find('option').eq(0).prop('selected', true);
+              }
+
+            });
+          }
+        });
+
+        // Profile
+        if (response.has_address) $('.slider-book').slick('slickRemove', pages.profile);
+
+        // NPS & Rating
+        if (('last_purchase' in response && response.last_purchase) || ('last_booking' in response && response.last_booking) ){
+          var purchase = 'last_purchase' in response ? response.last_purchase : false;
+          var nps = 'last_nps' in response ? response.last_nps : false;
+          var booking = 'last_booking' in response ? response.last_booking : false;
+
+          // Purchase exits and is from this months and there is not NPS or the one that exits is from previous months
+          if (purchase && moment(purchase.fecha).isSame(moment(), 'month') && (nps == false || moment(nps.date).isBefore(moment(), 'month')) ){
+            $('.nps-wrap').show();
+            $('.slider-book').slick('slickGoTo', pages.rating);
+          }else if (booking){
+            // No NPS but exists last booking without ranking
+            var diff = moment().diff(booking.dia, 'days');
+            var dow = moment(booking.dia).format('dddd');
+            $('.star').data('rid', booking.id);
+
+            if (diff === 1){
+              $('.book-rating h2 b').html('de ayer');
+            }else{
+              $('.book-rating h2 b').html('del '+dow);
+            }
+            $('.rating-wrap').show();
+            $('.slider-book').slick('slickGoTo', pages.rating);
+          }else{
+            if ($('#book-box').val() !== ''){
+              $('.slider-book').slick('slickGoTo', pages.day);
+            }else{
+              $('.slider-book').slick('slickGoTo', pages.box);
+            }
+          }
+        }else{
+          if ($('#book-box').val() !== ''){
+            $('.slider-book').slick('slickGoTo', pages.day);
+          }else{
+            $('.slider-book').slick('slickGoTo', pages.box);
+          }
+        }
+
+			});
+
+			// Products
+			$.post(cfurl, {route: 'socio', subroute: 'productos', socio_id: member_id}, function(data){
+				var response = JSON.parse(data);
+				var div = $('<div class="list-group-item"><span class="h5 name"></span><br>Días <span class="days"></span></div>')
+        if (response.html.length > 0){
+          var isnotfree = false;
+					$.each(response.html, function(i, product){
+						var item = div.clone();
+						item.find('.name').html(product.producto+' <small>Inició el '+moment(product.inicio).format('DD-MM-YYYY')+'</small>');
+						item.find('.days').html(product.dias_restantes);
+						if (product.sesiones_restantes !== null) item.find('.days').after(' | Sesiones '+product.sesiones_restantes);
+						$('.member-products').append(item);
+            if (product.total > 1) isnotfree = true;
+					});
+				}else{
+          $('.training-wrap').remove();
+          $('#home-training, .home-training').remove();
+        }
+			});
+
+      // Goals & Plans
+      $('#form-training-goal').on('submit', function(e){
+        e.preventDefault();
+        if ($(this).validateForm()){
+          showResponse('.book-alert', 'Guardando Objetivo', 'info');
+          $.post(cfurl, {
+            route: 'save-goal',
+            member_id: member_id,
+            box_id: box_id,
+            plan_id: $('[name="plan_id"] option:selected').val(),
+            goal_id: $('[name="goal_id"] option:selected').val(),
+            gender: $('[name="gender"] option:selected').val(),
+            dob: $('[name="dob-year"]').val()+'/'+$('[name="dob-month"]').val()+'/'+$('[name="dob-day"]').val()
+          }, function(data){
+            var response = JSON.parse(data);
+            if (response.class === 'success'){
+              $('#modal-training').modal('hide');
+              window.location.reload(false);
+            }
+            showResponse('.book-alert', response.html, response.class);
+          });
+        };
+      });
+      $('.training-change-goal').on('click', function(){
+        $('#form-training-goal .profile-extra-info [required]').prop('required', false);
+        $('#form-training-goal .profile-extra-info').hide();
+        $('#modal-training').modal('show');
+      });
+
+      // Leaderboards
+      /*
+      $.post(cfurl, {
+        route: 'leaderboards',
+        socio_id: member_id,
+        box_id: box_id
+      }, function(data){
+        var response = JSON.parse(data);
+        if (response.class === 'success'){
+          var div = $('<div class="list-group-item"></div>');
+          $.each (response.html.lists, function(i, list){
+            $.each (list, function(position, member){
+              var item = div.clone();
+              item.html('<b>'+(position+1)+'º</b> '+member.name+': <i>'+member.total+' puntos</i>');
+              if (member_id == member.ID) item.addClass('list-group-item-warning');
+              $('#leaderboard-'+i+' .list-group').append(item);
+            });
+          });
+
+          // Member Stands
+          var member = response.html.member;
+          if (member && member.type){
+            $('.leaderboards .nav a[href="#leaderboard-'+member.type+'"]').tab('show');
+            $('.leaderboards .current-stand').html('Tu posición: <b>'+member.position+'º</b> del leaderboard <b>'+(member.type == 1 ? 'BIGGiners' : (member.type == 2 ? 'BIGGs' : 'BIGGers'))+'</b> con '+member.points+' puntos.');
+          }else{
+            $('.leaderboards .current-stand').html('Parece que no sumaste ningún punto todavía. Qué estás esperando?');
+          }
+        }
+      });
+      */
+
+      // Programming
+      /*
+      $.getJSON('http://biggfriends.com/wp-json/programming/v1/workouts/', {did: 55}, function(data){
+        var letter = Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+				if (data.length > 0){
+					$.each(data, function(i, wod){
+            $('#wods-content').append('<div class="list-group-item"><h4 class="list-group-item-heading" data-toggle="collapse" data-parent="#wods-content" data-target="#wod-'+i+'">'+wod.title+'</h4><div id="wod-'+i+'" class="collapse list-group-item-text"></div>');
+            $.each(wod.content, function(d, section){
+              if (section.title == '') section.title = 'Sección '+letter[d];
+              $('#wod-'+i).append('<b>'+section.title+'</b><br>'+section.content.replace(/(\r\n|\n\r|\r|\n)/g, '<br>')+'<br>');
+            });
+          });
+        }
+      });
+      */
+      // Events
+			$('#event-signup').on('click', function(e){
+				e.preventDefault();
+        if (confirm('Reservar tu lugar para este evento?') == true){
+					showResponse('.book-alert', 'Guardando Inscripción', 'info');
+					$.post(cfurl, {
+						route: 'reservas',
+						subroute: 'guardar',
+						socio_id: member_id,
+						box_id: 2,
+						dia: '2019-10-29',
+						hora: '19:00',
+						clase_id: 100787,
+						intervalo: 0
+					}, function(data){
+						var response = JSON.parse(data);
+						if (response.class === 'success'){
+							LoadBookings();
+						}
+						showResponse('.book-alert', response.html, response.class);
+					});
+        }
+			});
+
+      // Mercado Pago
+      $('#modal-mercadopago').on('show.bs.modal', function(e){
+        mp('#form-mpcard').init();
+      });
+
+
+
+		} // Is Logged In
+
+	} // Is Page Socios
+
+});

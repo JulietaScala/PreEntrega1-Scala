@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="grid-contenedor">
+        <header class="encabezado">
+            <div class="logo">
+                <a href="../index.html"><img class="logo-img" src="../img/Logo pd.png" alt=""></a>
+                <h1 class="titulo-header">Pico Deportes</h1>
+            </div>
+            <nav class="menu-nav">
+                <ul class="ul-lista-nav">
+                    <li class="li-lista-nav"><a class="a-lista-nav" href="../index.html">Inicio</a></li>
+                    <li><a class="a-lista-nav" href="../pages/Futbol.html">Fútbol</a></li>
+                    <li class="link-bigg"><a class="a-lista-nav" href="https://bigg.fit/" target="_blank">BIGG Fitnes</a></li>
+                    <li><a class="a-lista-nav" href="../pages/Eventos.html">Eventos</a></li>
+                    <li><a class="a-lista-nav" href="../pages/Elclub.html">El Club</a></li>
+                </ul>
+                <input class="buscador" type="text" placeholder="Buscar">
+            </nav>
+            <div class="acceso">
+                <a class="link-acceso-registro" href="../pages/Accesoregistro.html">Acceso | Registro</a>
+            </div>
+        </header>
+        <main class="main-eventos">
+            <section class="carrusel-eventos">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="../img/panoramica drone.JPG" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../img/panoramica drone.JPG" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="../img/panoramica drone.JPG" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </section>
+            <div class="divisor">
+                <h3 class="divisor-texto">divisor de secciones</h3>
+            </div>
+            <section class="form-contacto-eventos">
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label for="inputEmail4" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="inputEmail4" placeholder="Escriba su nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="inputPassword4" class="form-label">Apellido</label>
+                        <input type="text" class="form-control" id="inputPassword4" placeholder="Escriba su apellido">
+                    </div>
+                    <div class="col-12">
+                        <label for="inputAddress" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="inputAddress"
+                            placeholder="Ingrese su correo electrónico">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="inputState" class="form-label">Tipo de evento</label>
+                        <select id="inputState" class="form-select">
+                            <option selected>Sin seleccionar...</option>
+                            <option>Desayuno empresarial</option>
+                            <option>Almuerzo empresarial</option>
+                            <option>Cena</option>
+                            <option>Cumpleaños infantil</option>
+                            <option>Fiesta</option>
+                            <option>Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer class="pie">
+            <div class="derechos">
+                <h5 class="derechos-h5">© Pico Deportes 2022. Todos los derechos reservados</h5>
+            </div>
+            <div class="links-redes">
+                <h4 class="links-redes-h4">Seguinos en nuestras redes</h4>
+            </div>
+            <div class="logos-redes">
+                <a href="https://instagram.com/picodeportestandil?igshid=YmMyMTA2M2Y=" target="_blank"><img
+                        src="../img/instagram.png" alt=""></a>
+                <a href="https://es-la.facebook.com/" target="_blank"><img src="../img/facebook.png" alt=""></a>
+                <a href="https://twitter.com/?lang=es" target="_blank"><img src="../img/twitter.png" alt=""></a>
+                <a href="https://wa.me/message/ZAKVYRHH42SCB1" target="_blank"><img src="../img/whatsapp.png" alt=""></a>
+                <a href="https://play.google.com/store/apps/details?id=com.fansbury.pico" target="_blank"><img
+                        src="../img/playstore.png" alt=""></a>
+                <a href="https://apps.apple.com/ar/app/pico-deportes/id1632798859" target="_blank"><img
+                        src="../img/applestore.png" alt=""></a>
+            </div>
+        </footer>
+    </div>
+    <script src="../js/bootstrap.min.js"></script>
+</body>
+
+</html>
