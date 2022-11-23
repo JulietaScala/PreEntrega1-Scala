@@ -1,0 +1,37 @@
+@import "../base/variables";
+
+.pie {
+    background-color: nth($colores, 4);
+    color: nth($colores, 8);
+    grid-area: footer;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas:
+    "derechos redes"
+    "derechos logosredes"
+    ;
+    margin-top: 1%;
+    width: 100%;
+    .derechos {
+        grid-area: derechos;
+        @extend %flex;
+        .derechos-h5 {
+            margin: 0;
+            font-size: 0.7rem;
+        }
+    }
+    .links-redes {
+        grid-area: redes;
+        @extend %flex;
+        padding-top: 5px;
+        .links-redes-h4 {
+            font-size: 0.9rem;
+        }
+    }
+    .logos-redes {
+        grid-area: logosredes;
+        @include flex (flex, space-between, center);
+        padding: 0 110px 10px 110px;
+    }
+}

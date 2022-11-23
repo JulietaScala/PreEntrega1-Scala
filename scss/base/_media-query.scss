@@ -1,0 +1,571 @@
+@media screen and (max-width:1200px) {
+    .grid-contenedor .encabezado .logo .titulo-header {
+        font-size: 1.3rem;
+    }
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
+        width: 60%;
+        margin-right: 15%;
+    }
+}
+@media screen and (max-width:1050px) {
+    .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion {
+        width: 73%;
+    }
+    .grid-contenedor .main-acceso-registro .registro .formulario-registro .div-formulario-registro {
+        width: 73%;
+    }
+}
+@media screen and (max-width:975px) {
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
+        width: 70%;
+        margin-right: 10%;
+    }
+}
+@media screen and (max-width:950px){
+    .grid-contenedor .encabezado {
+        width: 100%;
+        grid-template-columns: 8fr 2fr;
+        grid-template-rows: 60px 40px;
+        grid-template-areas:
+        "logo logo"
+        "menu acceso"
+        ;
+    }
+    .grid-contenedor .principal {
+        min-height: 535vh;
+    }
+    .grid-contenedor .principal .panoramica-club h2 {
+        font-size: 1.2rem;
+    }
+    .grid-contenedor .principal .novedades {
+        width: 500px;
+        margin: 0 auto;
+    }
+    .grid-contenedor .principal .novedades .noticia-uno {
+        flex-direction: column;
+        width: 500px;
+    }
+    .grid-contenedor .principal .novedades .noticia-uno .texto-noticia .p-noticia{
+        text-align: justify;
+        margin: 10px 0;
+        font-size: 0.7rem;
+    }
+    .grid-contenedor .principal .novedades .noticia-uno .texto-noticia .titulo-noticia {
+        text-align: center;
+        margin: 10px;
+        font-size: 1rem;
+    }
+    .grid-contenedor .principal .novedades .noticia-dos {
+        flex-direction: column;
+        width: 500px;
+    }
+    .grid-contenedor .encabezado .logo .titulo-header {
+        font-size: 30px;
+    }
+    .grid-contenedor .encabezado .menu-nav {
+        height: 40px;
+        margin: 0;
+        clip-path: none;
+        -webkit-clip-path: none;
+    }
+    .grid-contenedor .encabezado .menu-nav .buscador {
+        height: 1.8vh;
+    }
+    .grid-contenedor .encabezado .acceso {
+        height: 40px;
+        margin: 0;
+    }
+    .grid-contenedor .encabezado .logo {
+        height: 40px;
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .grid-contenedor .encabezado .logo a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .grid-contenedor .encabezado .logo a .logo-img {
+        width: 50%;
+        height: 50%;
+    }
+    .grid-contenedor .principal .marcas {
+        height: 22vh;
+    }
+    .grid-contenedor .principal .marcas .titulo-marcas {
+        font-size: 1.1rem;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas {
+        margin: 15px 50px 0px 50px;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas a {
+        width: auto;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas a img{
+        width: 75%;
+        height: 75%;
+    }
+    .divisor {
+        height: 12vh;
+        margin: 3% 0;
+    }
+    .divisor .divisor-texto {
+        font-size: 1.1rem;
+    }
+    .pie .logos-redes {
+        padding: 0 40px 10px;
+    }
+    .pie .logos-redes a{
+        margin: 0 5px 5;
+    }
+    .pie .logos-redes a img {
+        width: 95%;
+        height: 95%;
+    }
+    .pie .derechos .derechos-h5 {
+        padding-left: 10px;
+    }
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
+        width: 65%;
+        height: 90%;
+        margin-right: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-end;
+    }
+    .grid-contenedor .main-acceso-registro {
+        height: 155vh;
+    }
+    .grid-contenedor .main-acceso-registro .registro .formulario-registro .div-formulario-registro {
+        height: 60%;
+        display: flex;
+        align-items: center;
+    }
+    .grid-contenedor .main-acceso-registro .registro .formulario-registro {
+        display: flex;
+        align-items: center;
+    }
+    .grid-contenedor .main-acceso-registro .registro .form-titulo-registro {
+        margin: 2%;
+    }
+    .grid-contenedor .main-acceso-registro .registro .formulario-registro .form-radio {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: baseline;
+    }
+    .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion .labels-isecion {
+        display: flex;
+        flex-direction: column;
+    }
+    .grid-contenedor .main-acceso-registro .registro .formulario-registro .div-formulario-registro .label-form {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media screen and (max-width:900px) {
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
+        width: 75%;
+    }
+    .pie .derechos .derechos-h5 {
+        font-size: 0.6rem;
+    }
+}
+@media screen and (max-width:800px) {
+    .grid-contenedor {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 136px auto 150px;
+        grid-template-areas:
+        "header"
+        "main"
+        "footer"
+        ;
+    }
+    .grid-contenedor .encabezado {
+        display: inline-block;
+    }
+    .grid-contenedor .encabezado .logo .titulo-header {
+        font-size: 25px;
+    }
+    .grid-contenedor .encabezado .menu-nav {
+        height: 40px;
+        margin: 0;
+        padding: 0;
+        clip-path: none;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav {
+        padding: 0;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .li-lista-nav {
+        width: auto;
+        margin: 0 15px;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .li-lista-nav .a-lista-nav {
+        margin-top: 5px;
+        font-size: 0.9rem;
+    }
+    .grid-contenedor .encabezado .acceso {
+        height: 40px;
+        margin: 0;
+    }
+    .grid-contenedor .encabezado .acceso .link-acceso-registro {
+        font-size: 0.9rem;
+    }
+    .grid-contenedor .encabezado .logo {
+        height: 40px;
+        margin: 8px 0;
+    }
+    .grid-contenedor .principal {
+        min-height: 530vh;
+    }
+    .grid-contenedor .principal .panoramica-club h2 {
+        font-size: 1rem;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas a img {
+        width: 65%;
+        height: 65%;
+    }
+    .grid-contenedor .principal .marcas .titulo-marcas {
+        font-size: 1rem;
+    }
+    .divisor {
+        height: 11vh;
+        margin: 2.8% 0;
+    }
+    .divisor .divisor-texto {
+        font-size: 1rem;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .botones-horas .boton-hora {
+        font-size: 0.9rem;
+    }
+    .label-reserva-futbol {
+        font-size: 0.9rem;
+    }
+    .pie .logos-redes a img {
+        width: 90%;
+        height: 90%;
+    }
+}
+@media screen and (max-width:780px) {
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva .form-reserva-uno {
+        display: flex;
+        flex-direction: column;
+    }
+    .pie .logos-redes {
+        padding: 0 20px 10px;
+    }
+}
+@media screen and (max-width:700px) {
+    .grid-contenedor .encabezado .logo .titulo-header {
+        font-size: 20px;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .li-lista-nav {
+        width: auto;
+        margin: 0 10px;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .link-bigg {
+        padding: 0;
+    }
+    .grid-contenedor .principal {
+        min-height: 520vh;
+    }
+    .grid-contenedor .principal .galeria-grid .img-galeria-grid .boton-galeria-img a {
+        font-size: 0.9rem;
+        height: 6vh;
+    }
+    .grid-contenedor .principal .marcas {
+        height: 20vh;
+    }
+    .grid-contenedor .principal .marcas .titulo-marcas {
+        font-size: 0.9rem;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas a img{
+        width: 60%;
+        height: 60%;
+    }
+    .grid-contenedor .main-futbol .reserva-online {
+        width: 100%;
+        height: 85vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+        ". reserva reserva reserva ."
+        ". datos datos datos ."
+        ;
+        justify-items: center;
+        align-items: center;
+        gap: 3%;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .titulo-res-fut {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 1rem;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol {
+        width: 50%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-end;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol .select-hora-res {
+        display: flex;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .botones-horas {
+        display: none;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .referencias {
+        margin-top: 3%;
+    }
+    .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol {
+        display: none;
+    }
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol {
+        height: 42vh;
+    }
+    .divisor {
+        height: 10vh;
+        margin: 2.5% 0;
+    }
+    .pie {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .pie .logos-redes {
+        padding: 0;
+        width: 70%;
+        height: 3vh;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .pie .logos-redes a img {
+        width: 85%;
+        height: 85%;
+    }
+}
+@media screen and (max-width:650px) {
+    .grid-contenedor {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 136px auto 120px;
+        grid-template-areas:
+        "header"
+        "main"
+        "footer"
+        ;
+        font-size: 0.8rem;
+    }
+    .grid-contenedor .principal {
+        min-height: 555vh;
+    }
+    .grid-contenedor .principal .galeria-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 220vh;
+    }
+    .grid-contenedor .principal .galeria-grid .img-galeria-grid {
+        width: 80%;
+        height: 65%;
+    }
+    .grid-contenedor .principal .galeria-grid .imagen-uno {
+        display: none;
+    }
+    .grid-contenedor .principal .novedades {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .grid-contenedor .principal .novedades .noticia-uno {
+        width: 90%;
+        img {
+            width: 100%;
+        }
+    }
+    .grid-contenedor .principal .novedades .noticia-dos {
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column-reverse;
+        img {
+            width: 100%;
+        }
+    }
+    .grid-contenedor .encabezado .menu-nav .buscador {
+        display: none;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav {
+        width: 90%;
+    }
+    .grid-contenedor .principal .panoramica-club h2 {
+        font-size: 0.9rem;
+        height: 15%;
+    }
+    .grid-contenedor .principal .galeria-grid .img-galeria-grid .boton-galeria-img a {
+        font-size: 0.8rem;
+        top: 80%;
+    }
+    .grid-contenedor .principal .marcas {
+        height: 20vh;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas {
+        margin: 10px 40px 0;
+    }
+    .divisor {
+        height: 9vh;
+        margin: 2.3% 0;
+    }
+    .divisor .divisor-texto {
+        font-size: 0.9rem;
+    }
+    .grid-contenedor .main-futbol {
+        min-height: 150vh;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol {
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .botones-horas .boton-hora {
+        font-size: 0.8rem;
+    }
+    .grid-contenedor .main-acceso-registro .iniciar-sesion {
+        width: 65%;
+        height: 30%;
+    }
+    .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form {
+        height: 100%;
+    }
+    .grid-contenedor .main-acceso-registro .registro {
+        width: 65%;
+        height: 55%;
+    }
+    .pie .derechos .derechos-h5 {
+        font-size: 0.5rem;
+    }
+    .pie .links-redes .links-redes-h4 {
+        font-size: 0.6rem;
+    }
+}
+@media screen and (max-width:600px) {
+    .grid-contenedor .main-futbol {
+        min-height: 145vh;
+    }
+}
+@media screen and (max-width:550px) {
+    .grid-contenedor .encabezado .logo .titulo-header {
+        font-size: 18px;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .li-lista-nav {
+        width: auto;
+        margin: 0 5px;
+    }
+    .grid-contenedor .encabezado .menu-nav .buscador {
+        width: 90px;
+    }
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .link-bigg {
+        padding: 0;
+    }
+    .grid-contenedor .principal {
+        min-height: 545vh;
+    }
+    .grid-contenedor .principal .panoramica-club h2 {
+        font-size: 0.7rem;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas {
+        margin: 0 30px 0;
+    }
+    .grid-contenedor .principal .marcas .logos-marcas a img {
+        width: 50%;
+        height: 50%;
+    }
+    .grid-contenedor .principal .marcas {
+        height: 16vh;
+    }
+    .grid-contenedor .principal .marcas .titulo-marcas {
+        font-size: 0.8rem;
+        margin-bottom: 5px;
+    }
+    .grid-contenedor .principal .galeria-grid .img-galeria-grid .boton-galeria-img a {
+        font-size: 0.7rem;
+        height: 4vh;
+        top: 82%;
+    }
+    .divisor {
+        height: 8vh;
+        margin: 2% 0;
+    }
+    .divisor .divisor-texto {
+        font-size: 0.7rem;
+    }
+    .grid-contenedor .main-futbol {
+        min-height: 140vh;
+    }
+    .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol div .label-reserva-futbol {
+        font-size: 0.8rem;
+    }
+    .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva .form-reserva-uno .label-reserva-futbol {
+        font-size: 0.9rem;
+    }
+    .pie .logos-redes a img {
+        width: 75%;
+        height: 75%;
+    }
+} 
+@media screen and (max-width:490px) {
+    .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion {
+        width: 80%;
+        height: 70%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .grid-contenedor .main-futbol {
+        min-height: 145vh;
+    }
+}
+@media screen and (max-width:450px) {
+    .grid-contenedor .encabezado .menu-nav .ul-lista-nav .li-lista-nav .a-lista-nav {
+        font-size: 0.68rem;
+    }
+    .grid-contenedor .encabezado .acceso .link-acceso-registro {
+        font-size: 0.68rem;
+    }
+}
+@media screen and (max-width:400px) {
+    .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion {
+        width: 82%;
+    }
+    .grid-contenedor .main-futbol {
+        min-height: 135vh;
+    }
+}
+@media screen and (max-width:360px) {
+    .grid-contenedor .main-futbol {
+        min-height: 125vh;
+    }
+}

@@ -1,0 +1,453 @@
+@import "../base/variables";
+
+/*----------MAIN INICIO----------*/
+.grid-contenedor {
+    .principal {
+        background-color: nth($colores, 1);
+        grid-area: main;
+        min-height: 450vh;
+        .panoramica-club {
+            background-image: url(../img/panoramicaDrone.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 20%;
+            background-position: bottom;
+            @extend %flex;
+            h2 {
+                width: 30%;
+                height: 20%;
+                text-align: center;
+                background-color: #00314fda;
+                color: #ffffff;
+                @include font (1.3rem, ('Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif));
+                @extend %flex;
+            }
+        }
+        .galeria-grid {
+            width: calc(100% - 40px);
+            height: 850px;
+            background-color: nth($colores, 1);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 400px;
+            gap: 25px;
+            padding: 20px;
+            .imagen-uno {
+                grid-column: span 8;
+                position: relative;
+                img {
+                    @extend %wh100;
+                    object-fit: cover;
+                }
+            }
+            .imagen-dos {
+                grid-column: span 4;
+                position: relative;
+                img {
+                    @extend %wh100;
+                    object-fit: cover;
+                }
+            }
+            .imagen-tres {
+                grid-column: span 6;
+                position: relative;
+                img {
+                    @extend %wh100;
+                    object-fit: cover;
+                }
+            }
+            .imagen-cuatro {
+                grid-column: span 6;
+                position: relative;
+                img {
+                    @extend %wh100;
+                    object-fit: cover;
+                }
+            }
+        }
+        .marcas {
+            background-color: nth($colores, 5);
+            width: 100%;
+            height: 26vh;
+            margin-top: 2%;
+            .titulo-marcas {
+                @include font (1.2rem, ('Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif));
+                color: nth($colores, 2);
+                text-align: center;
+                padding-top: 1%;
+            }
+            .logos-marcas {
+                @include flex (flex, space-between, center);
+                margin: 25px 100px 0 100px;
+                a {
+                    @extend %flex;
+                    img {
+                        transition-property: width;
+                        transition-delay: 2s;
+                        &:hover {
+                            width: 95%;
+                        }
+                    }
+                }
+            }
+        }
+        .novedades {
+            width: auto;
+            margin: 0 75px;
+            .noticia-uno {
+                @include flex (flex, space-between, center);
+                background-color: nth($colores, 6);
+                .texto-noticia {
+                    margin: 0 60px;
+                }
+            }
+            .noticia-dos {
+                @include flex (flex, space-between, center);
+                margin-top: 30px;
+                background-color: nth($colores, 6);
+                .texto-noticia {
+                    margin: 0 60px;
+                }
+            }
+        }
+    }
+}
+
+
+
+/*----------MAIN FUTBOL----------*/
+.grid-contenedor {
+    .main-futbol {
+        grid-area: main;
+        .carrusel-futbol {
+            margin-bottom: 2%;
+        }
+        .reserva-online {
+            width: 100%;
+            height: 85vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+            "reserva reserva foto"
+            "datos datos foto"
+            ;
+            justify-items: center;
+            align-items: center;
+            gap: 1%;
+            .elegi-turno-futbol {
+                grid-area: reserva;
+                background-color: nth($colores, 7);
+                @extend %wh100;
+                @extend %flex;
+                flex-direction: column;
+                .titulo-res-fut {
+                    height: 15%;
+                    @include flex (flex, flex-start, center);
+                    flex-direction: column;
+                    font-size: 1.1rem;
+                    margin: 2%;
+                }
+                .calendario-reserva-futbol {
+                    width: 100%;
+                    @include flex (flex, space-evenly, center);
+                    div {
+                        .label-reserva-futbol {
+                            font-size: 1rem;
+                        }
+                    }
+                    .select-hora-res {
+                        display: none;
+                    }
+                }
+                .botones-horas {
+                    margin-top: 3%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    .boton-hora {
+                        width: 6vw;
+                        height: 5vh;
+                        margin: 0 1%;
+                        border-radius: 10px;
+                        border-color: nth($colores, 1);
+                        &:active {
+                            background-color: #00cf00;
+                            color: #ffffff;
+                        }
+                    }
+                }
+                .referencias {
+                    margin-top: 8%;
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                    .referencia {
+                        font-size: 0.9rem;
+                        margin: 0;
+                    }
+                    .referencia-dos {
+                        font-size: 0.8rem;
+                        margin: 0;
+                    }
+                }
+            }
+            .foto-vertical-futbol {
+                grid-area: foto;
+                @extend %wh100;
+                @extend %flex;
+                .imagen-futbol {
+                    width: 90%;
+                    height: 100%;
+                }
+            }
+            .datos-reserva-futbol {
+                grid-area: datos;
+                background-color: nth($colores, 7);
+                @extend %wh100;
+                @extend %flex;
+                flex-direction: column;
+                .formulario-reserva {
+                    width: 55%;
+                    height: 70%;
+                    @include flex (flex, space-between, flex-end);
+                    flex-direction: column;
+                    .form-reserva-uno {
+                        .label-reserva-futbol {
+                            font-size: 1rem;
+                        }
+                    }
+                    .form-reserva {
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-evenly;
+                        .reservar {
+                            &:hover {
+                                background-color: #008000;
+                            }
+                        }
+                        .borrar-reserva {
+                            &:hover {
+                                background-color: #808080;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*----------MAIN EVENTOS----------*/
+.grid-contenedor {
+    .main-eventos {
+        height: auto;
+        width: 100%;
+        grid-area: main;
+        .form-contacto-eventos {
+            margin: 3% 15% 0;
+            background-color: nth($colores, 11);
+            padding: 2%;
+            box-shadow: 10px 10px 20px #000000;
+        }
+    }
+}
+    
+
+
+
+/*----------MAIN ACCESO-REGISTRO----------*/
+.grid-contenedor {
+    .main-acceso-registro {
+        grid-area: main;
+        height: 120vh;
+        @include flex (flex, space-evenly, center);
+        flex-direction: column;
+        background-image: url(../img/_DSC1074.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        .iniciar-sesion {
+            display: flex;
+            flex-direction: column;
+            background-color: nth($colores, 9);
+            color: nth($colores, 1);
+            width: 50%;
+            height: 35%;
+            border: solid 1px #000000;
+            justify-content: center;
+            .form-iniciar-sesion {
+                @include flex (flex, center, baseline);
+            }
+            .link-interno-registro {
+                text-align: center;
+                margin: 1% 0;
+            }
+            .formulario {
+                height: 60%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                form {
+                    height: 100%;
+                    .div-formulario-isesion {
+                        width: 70%;
+                        height: 50%;
+                        @include flex (flex, space-evenly, flex-end);
+                        flex-direction: column;
+                        margin: 0;
+                        .labels-isesion {
+                            .color-texto-registro {
+                                color: nth($colores, 2);
+                            }
+                        }
+                    }
+                    .form {
+                        .boton-verde {
+                            margin-right: 5%;
+                            padding: 0.5% 1.5%;
+                            &:hover {
+                                background-color: #008000;
+                            }
+                        }
+                    }
+                    .recuperar-contrasenia {
+                        @extend %flex;
+                        margin: 1%;
+                    }
+                }
+            }
+        }
+        .registro {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: nth($colores, 10);
+            color: nth($colores, 1);
+            width: 50%;
+            height: 50%;
+            border: solid 1px #000000;
+            .form-titulo-registro {
+                margin: 15px;
+                text-align: center;
+            }
+            .formulario-registro {
+                height: 85%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                .div-formulario-registro {
+                    width: 70%;
+                    height: 55%;
+                    @include flex (flex, space-between, flex-end);
+                    flex-direction: column;;
+                    .form {
+                        .boton-borrar {
+                            padding: 0.5% 1.5%;
+                            &:hover {
+                                background-color: #808080;
+                            }
+                        }
+                    }
+                }
+                .form-radio {
+                    display: flex;
+                    justify-content: center;
+                }
+                .botones-registro {
+                    margin: 0 2% 0 2%;
+                }
+            }
+        }
+    }
+}
+
+
+/*----------MAIN EL CLUB----------*/
+.grid-contenedor {
+    .main-elclub {
+        grid-area: main;
+        min-height: 220vh;
+        .novedades {
+            width: auto;
+            margin: 0 75px;
+            .noticia-uno {
+                @include flex (flex, space-between, center);
+                background-color: nth($colores, 6);
+                .texto-noticia {
+                    margin: 0 60px;
+                }
+            }
+            .noticia-dos {
+                @include flex (flex, space-between, center);
+                margin-top: 30px;
+                background-color: nth($colores, 6);
+                .texto-noticia {
+                    margin: 0 60px;
+                }
+            }
+        }
+        .elclub-h2 {
+            text-align: center;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin-top: 2%;
+        }
+        .section-icons {
+            margin: 2% 0;
+            height: 30vh;
+            background-color: nth($colores, 5);
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .cont-icons {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                img {
+                    padding-bottom: 4%;
+                }
+            }
+        }
+        .elclub-cards {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            .elclub-card {
+                width: 28%;
+                height: 90vh;
+                background-color: nth($colores, 4);
+                color: nth($colores, 1);
+                border: 1px solid black;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                img {
+                    height: 70%;
+                }
+                h2 {
+                    height: 12%;
+                    width: 95%;
+                    font-size: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                p {
+                    height: 8%;
+                    width: 85%;
+                    font-size: 0.8rem;
+                    a {
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

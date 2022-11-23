@@ -1,0 +1,35 @@
+
+$colores:
+#ffffff,
+#000000,
+#000000a0,
+#00314f,
+#00314fdf,
+#00314f4e,
+#00314fc3,
+#a9a9a9,
+#959595e5,
+#001421ed,
+#263138a3;
+
+
+%flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+%wh100{
+    width: 100%;
+    height: 100%;
+}
+
+@mixin flex ($flex, $justify, $align){
+    display: $flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin font ($size, $family){
+    font-size: $size;
+    font-family: $family;
+}

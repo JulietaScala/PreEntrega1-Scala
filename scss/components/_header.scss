@@ -1,0 +1,89 @@
+@import "../base/variables";
+
+.grid-contenedor {
+    .encabezado {
+        background-color: nth($colores, 1);
+        grid-area: header;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1.8fr 5fr 1.2fr;
+        grid-template-areas:
+        "logo menu acceso"
+        ;
+        position: fixed;
+        top: 0%;
+        z-index: 1;
+        .logo {
+            background-color: nth($colores, 1);
+            grid-area: logo;
+            height: 80px;
+            margin: 10px 0 10px 10px;
+            @include flex (flex, space-around, center);
+            .titulo-header {
+                color: nth($colores, 2);
+                font-size: 1.4rem;
+                margin: 0;
+            }
+        }
+        .menu-nav {
+            background-color: nth($colores, 4);
+            grid-area: menu;
+            margin: 10px 8px 10px 0;
+            padding-right: 10px;
+            height: 80px;
+            width: 100%;
+            clip-path: polygon(5% 0, 101% 0, 101% 100%, 0% 140%);
+            @include flex (flex, space-around, center);
+            .ul-lista-nav {
+                list-style: none;
+                padding-left: 25px;
+                margin: 0;
+                width: 70%;
+                @include flex (flex, space-around, center);
+                .li-lista-nav {
+                    @include flex (flex, space-between, center);
+                    .a-lista-nav {
+                        width: auto;
+                        padding: 5px;
+                        color: nth($colores, 1);
+                        text-decoration: none;
+                        text-align: center;
+                        @include font (1rem, ('Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif));
+                        transition-property: background-color;
+                        transition-duration: 1s;
+                        &:hover {
+                            background-color: #ffffff;
+                            color: #000000;
+                        }
+                    }
+                }
+            }
+            .buscador {
+                position: relative;
+                padding: 5px;
+                width: 20%;
+            }
+        }
+        .acceso {
+            background-color: nth($colores, 2);
+            grid-area: acceso;
+            height: 80px;
+            margin: 10px 0 10px 0;
+            @extend %flex;
+            text-align: center;
+            .link-acceso-registro {
+                text-decoration: none;
+                @include font (1rem, ('Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif));
+                padding: 5px;
+                margin: 0 10px;
+                color: nth($colores, 1);
+                transition-property: background-color;
+                transition-duration: 1s;
+                &:hover {
+                    background-color: #ffffff;
+                    color: #000000;
+                }
+            }
+        }
+    }
+}
