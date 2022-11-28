@@ -376,7 +376,7 @@
                 @include flex (flex, space-between, center);
                 background-color: nth($colores, 6);
                 .texto-noticia {
-                    margin: 0 60px;
+                    margin: 0 30px;
                 }
             }
             .noticia-dos {
@@ -384,7 +384,7 @@
                 margin-top: 30px;
                 background-color: nth($colores, 6);
                 .texto-noticia {
-                    margin: 0 60px;
+                    margin: 0 30px;
                 }
             }
         }
@@ -427,7 +427,7 @@
                 align-items: center;
                 text-align: center;
                 img {
-                    height: 70%;
+                    height: 65%;
                 }
                 h2 {
                     height: 12%;

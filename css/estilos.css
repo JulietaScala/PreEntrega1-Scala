@@ -444,7 +444,7 @@
       align-items: center;
       background-color: #00314f4e; }
       .grid-contenedor .main-elclub .novedades .noticia-uno .texto-noticia {
-        margin: 0 60px; }
+        margin: 0 30px; }
     .grid-contenedor .main-elclub .novedades .noticia-dos {
       display: flex;
       justify-content: space-between;
@@ -452,7 +452,7 @@
       margin-top: 30px;
       background-color: #00314f4e; }
       .grid-contenedor .main-elclub .novedades .noticia-dos .texto-noticia {
-        margin: 0 60px; }
+        margin: 0 30px; }
   .grid-contenedor .main-elclub .elclub-h2 {
     text-align: center;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -488,7 +488,7 @@
       align-items: center;
       text-align: center; }
       .grid-contenedor .main-elclub .elclub-cards .elclub-card img {
-        height: 70%; }
+        height: 65%; }
       .grid-contenedor .main-elclub .elclub-cards .elclub-card h2 {
         height: 12%;
         width: 95%;
@@ -553,7 +553,11 @@
     font-size: 1.3rem; }
   .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
     width: 60%;
-    margin-right: 15%; } }
+    margin-right: 15%; }
+  .grid-contenedor .main-elclub .elclub-cards .elclub-card {
+    height: 70vh; }
+  .grid-contenedor .main-elclub .elclub-cards .elclub-card img {
+    height: 60%; } }
 
 @media screen and (max-width: 1050px) {
   .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion {
@@ -672,13 +676,45 @@
     flex-direction: column; }
   .grid-contenedor .main-acceso-registro .registro .formulario-registro .div-formulario-registro .label-form {
     display: flex;
-    flex-direction: column; } }
+    flex-direction: column; }
+  .grid-contenedor .main-elclub .elclub-cards .elclub-card {
+    height: 60vh;
+    display: flex;
+    justify-content: flex-start; }
+  .grid-contenedor .main-elclub .elclub-cards .elclub-card img {
+    height: 58%;
+    margin-top: 5%; } }
 
 @media screen and (max-width: 900px) {
   .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
     width: 75%; }
   .pie .derechos .derechos-h5 {
     font-size: 0.6rem; } }
+
+@media screen and (max-width: 850px) {
+  .grid-contenedor .main-elclub .novedades {
+    height: 60vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; }
+  .grid-contenedor .main-elclub .novedades .noticia-uno {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+    height: 55vh; }
+    .grid-contenedor .main-elclub .novedades .noticia-uno img {
+      width: 100%; }
+  .grid-contenedor .main-elclub .novedades .noticia-dos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    height: 55vh; }
+    .grid-contenedor .main-elclub .novedades .noticia-dos img {
+      width: 100%; } }
 
 @media screen and (max-width: 800px) {
   .grid-contenedor {
@@ -968,4 +1004,6 @@
 
 @media screen and (max-width: 360px) {
   .grid-contenedor .main-futbol {
-    min-height: 125vh; } }
+    min-height: 125vh; }
+  .grid-contenedor .principal {
+    min-height: 500vh; } }

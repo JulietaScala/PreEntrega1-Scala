@@ -6,6 +6,12 @@
         width: 60%;
         margin-right: 15%;
     }
+    .grid-contenedor .main-elclub .elclub-cards .elclub-card {
+        height: 70vh;
+    }
+    .grid-contenedor .main-elclub .elclub-cards .elclub-card img {
+        height: 60%;
+    }
 }
 @media screen and (max-width:1050px) {
     .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .div-formulario-isecion {
@@ -165,6 +171,15 @@
         display: flex;
         flex-direction: column;
     }
+    .grid-contenedor .main-elclub .elclub-cards .elclub-card {
+        height: 60vh;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .grid-contenedor .main-elclub .elclub-cards .elclub-card img {
+        height: 58%;
+        margin-top: 5%;
+    }
 }
 @media screen and (max-width:900px) {
     .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva {
@@ -172,6 +187,36 @@
     }
     .pie .derechos .derechos-h5 {
         font-size: 0.6rem;
+    }
+}
+@media screen and (max-width:850px) {
+    .grid-contenedor .main-elclub .novedades {
+        height: 60vh;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .grid-contenedor .main-elclub .novedades .noticia-uno {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 40%;
+        height: 55vh;
+        img {
+            width: 100%;
+        }
+    }
+    .grid-contenedor .main-elclub .novedades .noticia-dos {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 40%;
+        height: 55vh;
+        img {
+            width: 100%;
+        }
     }
 }
 @media screen and (max-width:800px) {
@@ -567,5 +612,8 @@
 @media screen and (max-width:360px) {
     .grid-contenedor .main-futbol {
         min-height: 125vh;
+    }
+    .grid-contenedor .principal {
+        min-height: 500vh;
     }
 }
