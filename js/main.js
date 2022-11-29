@@ -13,7 +13,7 @@ if (nombreUsuario == "") {
     saludar();
 }
 
-/*----------html acceso | registro ---------*/
+/*----------html acceso | REGISTRO ---------*/
 
 let nombreRegistro = prompt("Para registrarte escribí tu nombre");
 let apellidoRegistro = prompt("Escribí tu apellido");
@@ -25,6 +25,24 @@ if (repContraseñia != contraseña) {
 } else {
     alert("Tu registro fue exitoso! Vas a recibir información de Pico Deportes en tu mail");
 }
+
+/*----------html ACCESO | registro ---------*/
+
+let nombreAcceso = prompt("Escribí tu nombre de usuario");
+let contraseñaGuardada = 1111;
+let password = parseInt(prompt("cual es la clave?"));
+let intentos = 3;
+
+while (password != contraseñaGuardada && intentos > 0) {
+    intentos = intentos - 1;
+    alert(`La clave es incorrecta, te quedan ${intentos} intentos`);
+    if (intentos != 0) {
+        password = parseInt(prompt("cual es la clave?"))
+    } else {
+        alert("Cuenta bloqueada");
+    }
+}
+alert("Ingreso válido");
 
 /*----------html futbol ---------*/
 
