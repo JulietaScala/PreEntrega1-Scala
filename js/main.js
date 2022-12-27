@@ -1,6 +1,6 @@
-/*----------html inicio---------*/
 
-/* function saludar () {
+
+function saludar () {
     alert(`Bienvenid@ ${nombreUsuario}`);
 }
 
@@ -11,40 +11,8 @@ if (nombreUsuario == "") {
     saludar();
 } else {
     saludar();
-} */
-
-/*----------html acceso | REGISTRO ---------*/
-
-/* let nombreRegistro = prompt("Para registrarte escribí tu nombre");
-let apellidoRegistro = prompt("Escribí tu apellido");
-let correo = prompt("Escribí tu correo electrónico");
-let contraseña = prompt("Crea una contraseña");
-let repContraseñia = prompt("Repetí la contraseña");
-if (repContraseñia != contraseña) {
-    alert("Las contraseñas no coinciden");
-} else {
-    alert("Tu registro fue exitoso! Vas a recibir información de Pico Deportes en tu mail");
-} */
-
-/*----------html ACCESO | registro ---------*/
-
-/* let nombreAcceso = prompt("Escribí tu nombre de usuario");
-let contraseñaGuardada = 1111;
-let password = parseInt(prompt("cual es la clave?"));
-let intentos = 3;
-
-while (password != contraseñaGuardada && intentos > 0) {
-    intentos = intentos - 1;
-    alert(`La clave es incorrecta, te quedan ${intentos} intentos`);
-    if (intentos != 0) {
-        password = parseInt(prompt("cual es la clave?"))
-    } else {
-        alert("Cuenta bloqueada");
-    }
 }
-alert("Ingreso válido"); */
 
-/*----------html futbol ---------*/
 
 let horas = ["16hs", "17hs", "18hs", "19hs", "20hs", "21hs", "22hs", "23hs"];
 
@@ -59,51 +27,102 @@ class ReservaDatos {
         this.apellido = apellido;
         this.correoElectronico = correoElectronico;
     }
+
+   
 }
 function crearReserva() {
-    let tipoCancha = parseInt(prompt("Qué tipo de cancha querés reservar? \n" +
-    "1) Fútbol 6  \n" +
-    "2) Fútbol 8 \n"));
-    let dia = prompt("Qué día querés reservar?");
-    let hora = prompt("A qué hora querés reservar la cancha?");
-    let nombreReserva = prompt("Completá con tu nombre");
-    let apellidoReserva = prompt("Completá con tu apellido");
-    let correoReserva = prompt("Escribí tu correo electrónico");
+
+    let tcancha = tipoCancha()
+    let datos = {}
+    if(tcancha == 1 || tcancha == 2){
+        datos = devolverDatos()
+    }   
     
-    const nuevaReserva = new ReservaDatos (tipoCancha, dia, hora, nombreReserva, apellidoReserva, correoReserva)
+    const nuevaReserva = new ReservaDatos (tcancha, datos.dia, datos.hora, datos.nombreReserva, datos.apellidoReserva, datos.correoReserva)
     console.log(nuevaReserva)
     return nuevaReserva;
 }
 
 const precioCancha6 = 5400;
 const precioCancha8 = 7200;
-function precioHora (num) {
-    return (num2) => num2 * num;
+function precioHora () {
+    let datos = obtenerDatos()
+    let total = datos.cantidadHoras * datos.precio
+    console.log(total)
+    console.log(`El precio total es de ${(total)}`);
+    return total;
 }
-switch (tipoCancha) {
-    case 1:
-        pedirHoras ();
-        if (cantidadHoras <= 3 && cantidadHoras > 0) {
-            const precioTotal8 = precioHora(precioCancha8);
-            console.log(`El precio total es de $${precioTotal8(cantidadHoras)}`);
-        } else {
-            console.log("La cantidad de horas no es válida")
-        }
-        break;
-    case 2:
-        pedirHoras ();
-        if (cantidadHoras <= 3 && cantidadHoras > 0) {
-            const precioTotal6 = precioHora(precioCancha6);
-            console.log(`El precio total es de $${precioTotal6(cantidadHoras)}`);
-        } else {
-            console.log("La cantidad de horas no es válida")
-        }
-        break;
-    default:
-        console.log("No se reconoce el tipo de cancha seleccionada");
+
+function obtenerDatos() {
+    let cantidadHoras = 0;
+    let precio = 0 
+    switch (tipoCancha()) {
+        case 1:
+            cantidadHoras = pedirHoras ();
+            if (cantidadHoras <= 3 && cantidadHoras > 0) {
+                precio = precioCancha8;
+            } else {
+                console.log("La cantidad de horas no es válida")
+            }
+            break;
+        case 2:
+            cantidadHoras = pedirHoras ();
+            if (cantidadHoras <= 3 && cantidadHoras > 0) {
+                precio = precioCancha6;
+            } else {
+                console.log("La cantidad de horas no es válida")
+            }
+            break;
+        default:
+            console.log("No se reconoce el tipo de cancha seleccionada");
+    }
+    return {
+        precio:precio,
+        cantidadHoras:cantidadHoras
+    }
 }
 
 function pedirHoras () {
     cantidadHoras = parseInt(prompt("Selecciona la cantidad de horas que desea reservar la cancha"));
     return cantidadHoras;
+}
+
+function tipoCancha () {
+    let canchaIngresada = parseInt(prompt("Qué tipo de cancha querés reservar?\n" +
+    "Opción 1: Fútbol 8 \n" +
+    "Opción 2: Fútbol 6  \n"));
+    if (canchaIngresada == 1 || canchaIngresada == 2) {
+        return canchaIngresada;
+    }else{
+        return 0;
+    }
+}
+
+function devolverDatos(){
+    let dia = prompt("Qué día querés reservar?");
+    let hora = prompt("A qué hora querés reservar la cancha?");
+    if (horas.includes(hora)) { //aca se utiliza la funcionalidad del arreglo para probar si el valor de esta dentro del arreglo
+        let nombreReserva = prompt("Completá con tu nombre");
+            while (nombreReserva == " " || nombreReserva == "") {
+                nombreReserva = prompt("Completá con tu nombre");
+            }
+        let apellidoReserva = prompt("Completá con tu apellido");
+            while (apellidoReserva == " " || apellidoReserva == "") {
+                apellidoReserva = prompt("Completá con tu apellido");
+            }
+        let correoReserva = prompt("Escribí tu correo electrónico");
+            while (!correoReserva.includes("@")) {
+                correoReserva = prompt("Escribí tu correo electrónico");
+            }
+        return {
+            dia:dia,
+            hora:hora,
+            nombreReserva:nombreReserva,
+            apellidoReserva:apellidoReserva,
+            correoReserva:correoReserva
+        }
+    } else {
+        alert("La hora seleccionada no es válida")
+        return null;
+    }
 }
