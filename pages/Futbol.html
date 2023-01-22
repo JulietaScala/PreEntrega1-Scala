@@ -83,7 +83,7 @@
                     <div class="calendario-reserva-futbol">
                         <div>
                             <label class="label-reserva-futbol" for="">Cancha</label>
-                            <select>
+                            <select id="cancha">
                                 <option>Sin seleccionar</option>
                                 <option>Fútbol 8</option>
                                 <option>Fútbol 6</option>
@@ -92,12 +92,12 @@
                         <div>
                             <label class="label-reserva-futbol" for="start">Día</label>
                             <input type="date" id="start" name="trip-start"
-                            value="2022-10-26"
-                            min="2022-01-01" max="2030-12-31">
+                            value="2023-01-23"
+                            min="2023-01-23" max="2030-12-31">
                         </div>
                         <div class="select-hora-res">
                             <label class="label-reserva-futbol" for="">Horario</label>
-                            <select>
+                            <select id="opcionSelect">
                                 <option>Sin seleccionar</option>
                                 <option>16hs</option>
                                 <option>17hs</option>
@@ -109,45 +109,48 @@
                                 <option>23hs</option>
                             </select>
                         </div>
-                    </div>
-                    <div class="botones-horas">
-                        <button class="boton-hora" type="button">16hs</button>
-                        <button class="boton-hora" type="button">17hs</button>
-                        <button class="boton-hora" type="button">18hs</button>
-                        <button class="boton-hora" type="button">19hs</button>
-                        <button class="boton-hora" type="button">20hs</button>
-                        <button class="boton-hora" type="button">21hs</button>
-                        <button class="boton-hora" type="button">22hs</button>
-                        <button class="boton-hora" type="button">23hs</button>
+                        <div>
+                            <label class="label-reserva-futbol" for="">Duración</label>
+                            <select id="cantHoras">
+                                <option>Sin seleccionar</option>
+                                <option>1 hora</option>
+                                <option>2 horas</option>
+                                <option>3 horas</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="referencias">
+                        <p class="referencia"><strong>Cancha F8: $9.600</strong></p>
                         <p class="referencia"><strong>Cancha F6: $7.200</strong></p>
-                        <p class="referencia"><strong>Cancha F6: $5.400</strong></p>
                         <p class="referencia-dos">*Los turnos tienen duración de una hora</p>
                     </div>
                 </div>
                 <div class="foto-vertical-futbol">
-                    <img class="imagen-futbol" src="../img/fotovertical.jpg" alt="">
+                    <div id="divReserva" class="nuevoDiv"></div>
                 </div>
                 <div class="datos-reserva-futbol">
-                   <form class="formulario-reserva">
+                   <form id="formulario" class="formulario-reserva">
                         <div class="form-reserva-uno">
                             <label class="label-reserva-futbol" for="" >Nombre</label>
-                            <input type="text" placeholder="Escriba su nombre">
+                            <input type="text" id="nombre" placeholder="Escriba su nombre">
                         </div>
                         <div class="form-reserva-uno">
                             <label class="label-reserva-futbol" for="" >Apellido</label>
-                            <input type="text" placeholder="Escriba su nombre">
+                            <input type="text" id="apellido" placeholder="Escriba su apellido">
                         </div>
                         <div class="form-reserva-uno">
                             <label class="label-reserva-futbol" for="" >Correo electrónico</label>
-                            <input type="text" placeholder="Escriba su nombre">
+                            <input type="email" id="email" placeholder="Escriba su correo electrónico">
                         </div>
                         <div class="form-reserva">
-                            <input class="reservar" type="submit" value="Reservar turno">
-                            <input class="borrar-reserva" type="reset" value="Borrar">
+                            <input id="btnReservar" class="reservar" type="submit" value="Reservar turno">
+                            <input id="btnBorrar" class="borrar-reserva" type="reset" value="Borrar">
                         </div>
-                   </form> 
+                   </form>
+                   <div>
+                        <button id="btnJSON">Otros servicios que ofrecemos</button>
+                        <div id="contFetch" class="classFetch"></div>
+                   </div>
                 </div>
             </section>
         </main>

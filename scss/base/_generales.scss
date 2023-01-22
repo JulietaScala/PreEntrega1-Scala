@@ -14,7 +14,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px auto 150px;
+    grid-template-rows: 100px 1100px 150px;
     grid-template-areas:
     "header"
     "main"
@@ -58,4 +58,18 @@
     display: flex;
     justify-content: center;
     align-items: baseline;
+}
+
+.h2Reserva {
+    font-size: 1.2rem;
+    display: flex;
+    text-align: center;
+}
+
+.h3Reserva {
+    font-size: 1rem;
+}
+
+.h4Reserva {
+    font-size: 0.9rem;
 }

@@ -22,7 +22,7 @@
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 100px auto 150px;
+  grid-template-rows: 100px 1100px 150px;
   grid-template-areas: "header" "main" "footer"; }
 
 .divisor {
@@ -57,6 +57,17 @@
   display: flex;
   justify-content: center;
   align-items: baseline; }
+
+.h2Reserva {
+  font-size: 1.2rem;
+  display: flex;
+  text-align: center; }
+
+.h3Reserva {
+  font-size: 1rem; }
+
+.h4Reserva {
+  font-size: 0.9rem; }
 
 .grid-contenedor .encabezado .acceso, .grid-contenedor .principal .panoramica-club, .grid-contenedor .principal .panoramica-club h2, .grid-contenedor .principal .marcas .logos-marcas a, .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol, .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol, .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol, .grid-contenedor .main-acceso-registro .iniciar-sesion .formulario form .recuperar-contrasenia, .pie .derechos, .pie .links-redes {
   display: flex;
@@ -256,7 +267,7 @@
     height: 85vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1.7fr;
     grid-template-areas: "reserva reserva foto" "datos datos foto";
     justify-items: center;
     align-items: center;
@@ -280,8 +291,6 @@
         align-items: center; }
         .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol div .label-reserva-futbol {
           font-size: 1rem; }
-        .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol .select-hora-res {
-          display: none; }
       .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .botones-horas {
         margin-top: 3%;
         width: 100%;
@@ -312,6 +321,16 @@
       .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol .imagen-futbol {
         width: 90%;
         height: 100%; }
+      .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol .nuevoDiv {
+        background-color: #00314f;
+        border-radius: 2px;
+        border-color: black;
+        width: 90%;
+        color: white; }
+        .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol .nuevoDiv .classReserva .titulo.Reserva {
+          display: flex;
+          justify-content: center;
+          align-items: center; }
     .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol {
       grid-area: datos;
       background-color: #00314fc3;
@@ -333,6 +352,24 @@
             background-color: #008000; }
           .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol .formulario-reserva .form-reserva .borrar-reserva:hover {
             background-color: #808080; }
+      .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div {
+        display: block;
+        align-self: center;
+        width: 100%; }
+        .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div .button {
+          text-align: center; }
+        .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div .classFetch {
+          display: flex;
+          justify-content: space-evenly;
+          align-items: center;
+          width: 100%; }
+          .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div .classFetch .hijoFetch {
+            display: block;
+            justify-content: center; }
+            .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div .classFetch .hijoFetch h2 {
+              font-size: 0.9rem; }
+            .grid-contenedor .main-futbol .reserva-online .datos-reserva-futbol div .classFetch .hijoFetch h4 {
+              font-size: 0.6rem; }
 
 /*----------MAIN EVENTOS----------*/
 .grid-contenedor .main-eventos {
@@ -827,8 +864,6 @@
     align-items: flex-end; }
   .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .calendario-reserva-futbol .select-hora-res {
     display: flex; }
-  .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .botones-horas {
-    display: none; }
   .grid-contenedor .main-futbol .reserva-online .elegi-turno-futbol .referencias {
     margin-top: 3%; }
   .grid-contenedor .main-futbol .reserva-online .foto-vertical-futbol {
